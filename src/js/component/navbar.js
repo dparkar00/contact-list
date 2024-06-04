@@ -18,7 +18,7 @@ export const Navbar = () => {
 			<User/>
 			<CreateUserForm/>
 			<Link to="/">
-				<span className="navbar-brand mb-0 h1">{`Agenda of: ${username}`}</span>
+				<span className="navbar-brand mb-0 h1">{`${username}'s Agenda`}</span>
 			</Link>
 			
 			

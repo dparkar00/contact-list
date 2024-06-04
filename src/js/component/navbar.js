@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import "../../styles/home.css";
+import User from "./user";
+import CreateUserForm from "./createuser";
 
 export const Navbar = () => {
+	const {store, actions} = useContext(Context)
+	const [username, setUsername] = useState("");
+	const [selectedUser, setSelectedUser] = useState("");
+	useEffect(() => {
+		setUsername(store.user.slug || "");        
+        
+    }, [store.user])
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
+		<nav className="navbar navbar-light mb-3">
+			<User/>
+			<CreateUserForm/>
 			<Link to="/">
-				<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+				<span className="navbar-brand mb-0 h1">{`Agenda of: ${username}`}</span>
 			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
-				</Link>
-			</div>
+			
+			
+
+
 		</nav>
 	);
 };

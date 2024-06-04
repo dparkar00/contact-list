@@ -1,0 +1,22 @@
+ul {
+    background-color: blue;
+    height: auto;
+    color: white;
+    width: 400px;
+}
+
+.btn-success {
+    margin: 0.8em;
+    
+}
+.navbar {
+    background-color: #9860f9;
+}
+.navbar-brand {
+    padding-left: 3em;
+    
+    text-decoration: none;
+}
+body {
+    background-color: #faeee7;
+}

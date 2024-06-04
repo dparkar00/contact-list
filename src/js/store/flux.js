@@ -30,7 +30,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(data => { setStore({ "contacts": data.contacts }); })
 				.catch(error => { console.error('Error fetching contacts:', error); });
 			},
-			newContact: (name, email, phone, address) => {
+			createUser: (username) => {
+				const config = { 
+					method: "POST",
+					body: JSON.stringify({ "slug": username }),
+					headers: { "Accept": "application/json" }
+				}
+
+				fetch(`https://playground.4geeks.com/contact/agendas/${username}`, config)
+				.then(() => { getActions().getContactList(username); setStore({ "user": username }); })
+				.catch(error => { console.error('Error fetching contacts:', error); });
+			},
+
+
+
+
+			createContact: (name, email, phone, address) => {
 				
 				const contact = {
 					"name": name,

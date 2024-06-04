@@ -7,7 +7,7 @@ const CreateUserForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        actions.createSlugAgenda(username);
+        actions.createUser(username);
         setUsername(""); 
     };
 

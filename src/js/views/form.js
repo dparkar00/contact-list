@@ -27,7 +27,7 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        actions.newContact(newContact.name, newContact.email, newContact.phone, newContact.address);
+        actions.createContact(newContact.name, newContact.email, newContact.phone, newContact.address);
         setNewContact({ name: "", email: "", phone: "", address: "" });
         navigate("/");  // Redirect to the home page after saving the contact
     };

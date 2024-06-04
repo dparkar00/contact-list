@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";  // Use useNavigate instead of useHistory
+import { Link, useNavigate } from "react-router-dom";  
 import { Context } from "../store/appContext";
 import "../../styles/form.css";
 
 const Form = () => {
     const { actions } = useContext(Context);
-    const navigate = useNavigate();  // Use the useNavigate hook to get the navigate function
+    const navigate = useNavigate();  
 
     const [newContact, setNewContact] = useState({
         name: "",

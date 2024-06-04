@@ -23,54 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const selectedUser = { slug, id };
 				setStore({ user: selectedUser });
 			},
-			getAllAgendas: async () => {
-				const agendasReq = await fetch(`https://playground.4geeks.com/contact/agendas`, {
-					headers: {
-						"Content-Type": "application/json"
-					}
-				});
-				const agendasJson = await agendasReq.json()
-				setStore({ agendas: agendasJson.agendas })
-			},
-			getSlugAgenda: async (slug) => {
-				const slugReq = await fetch(`https://playground.4geeks.com/contact/agendas/${slug}`, {
-					headers: {
-						"Content-Type": "application/json"
-					}
-				});
-				const slugJson = await slugReq.json()
-				setStore({ slug: slugJson })
-				return slugJson
-			},
-			createSlugAgenda: async (slug) => {
-				const createSlugReq = await fetch(`https://playground.4geeks.com/contact/agendas/${slug}`, {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json"
-					}
-				})
-				if (!createSlugReq) {
-					alert("Something Went Wrong")
-				} else {
-					const createSlugJson = await createSlugReq.json()
-					const updatedAgendas = [...getStore().agendas, createSlugJson]
-					setStore({ ...getStore(), agendas: updatedAgendas })
-				}
-			},
-			deleteSlugAgenda: async (slug) => {
-				const deleteSlugReq = await fetch(`https://playground.4geeks.com/contact/agendas/${slug}`, {
-					method: "DELETE",
-					headers: {
-						"Content-Type": "application/json"
-					}
-				});
-				if (!deleteSlugReq.ok) {
-					alert("Something Went Wrong")
-				} else {
-					const updatedAgendas = getStore().agendas.filter((index) => index !== slug.id)
-					setStore({ ...getStore().agendas, agendas: updatedAgendas })
-				}
-			},
+			
 			getContactList: () => {
 				fetch(`https://playground.4geeks.com/contact/agendas/${getStore().user.slug}/contacts`)
 				.then(response => { return response.json(); })

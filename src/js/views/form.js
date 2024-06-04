@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";  // Use useNavigate instead of useHistory
 import { Context } from "../store/appContext";
 import "../../styles/form.css";
 
 const Form = () => {
-    const { actions } = useContext(Context); 
+    const { actions } = useContext(Context);
+    const navigate = useNavigate();  // Use the useNavigate hook to get the navigate function
 
     const [newContact, setNewContact] = useState({
         name: "",
@@ -16,14 +17,9 @@ const Form = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        //validation for phone number is a numerical value and valid length
-        if (name === "phone" && isNaN(value)) {
-            return; 
-        }
-
-        
-        if (name === "phone" && value.length > 9) {
-            return; 
+        // validation for phone number to ensure it's a numerical value and valid length
+        if (name === "phone" && (isNaN(value) || value.length > 9)) {
+            return;
         }
 
         setNewContact({ ...newContact, [name]: value });
@@ -33,6 +29,7 @@ const Form = () => {
         e.preventDefault();
         actions.newContact(newContact.name, newContact.email, newContact.phone, newContact.address);
         setNewContact({ name: "", email: "", phone: "", address: "" });
+        navigate("/");  // Redirect to the home page after saving the contact
     };
 
     return (
@@ -62,7 +59,7 @@ const Form = () => {
                     />
                 </div>
                 <div className="d-flex flex-column">
-                    <label htmlFor="telefono">Phone Number:</label>
+                    <label htmlFor="phone">Phone Number:</label>
                     <input
                         type="text"
                         id="phone"

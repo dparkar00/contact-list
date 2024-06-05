@@ -36,7 +36,7 @@ const ContactCard = () => {
 
     return (
         <ul className="list-group">
-            {store.contacts.map((item) => (
+            {store.contacts?.map((item) => (
                 <li key={item.id} className="list-group-item d-flex justify-content-between">
                     {editContactId === item.id ? (
                         <form onSubmit={handleFormSubmit} className="d-flex flex-column w-50">
